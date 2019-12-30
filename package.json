@@ -1,0 +1,31 @@
+{
+  "name": "react-query-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-loading-bar": "0.0.7",
+    "react-query": "^0.3.23",
+    "react-scripts": "^3.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start"
+  },
+  "keywords": [],
+  "author": "Abdulazeez Abdulazeez Adeshina <laisibizness@gmail.com> (http://github.com/Youngestdev)",
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

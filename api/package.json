@@ -1,0 +1,30 @@
+{
+  "name": "recipe-server",
+  "version": "0.0.1",
+  "description": "A simple recipe api endpoint for a demo",
+  "keywords": "recipe",
+  "homepage": "http://abdul.codes",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "Faker": "~0.5.11",
+    "husky": "^2.4.1",
+    "nodemon": "^1.19.1",
+    "pupa": "^2.0.0",
+    "rosie": "~1.6.0",
+    "showdown": "^1.9.0",
+    "supertest": "^3.1.0",
+    "tape": "^4.5.1",
+    "underscore": "~1.5.2"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "license": "MIT"
+}
