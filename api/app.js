@@ -22,21 +22,6 @@ const recipes = [
     title: "Pancake recipes",
     content: "how to make pancakes..."
   },
-  {
-    id: 4,
-    title: "Fish peppersoup recipe",
-    content: "how to make it..."
-  },
-  {
-    id: 5,
-    title: "Efo Riro",
-    content: "how to make it..."
-  },
-  {
-    id: 6,
-    title: "Garden Egg soup",
-    content: "how to make it..."
-  }
 ];
 
 app.get("/", (req, res) => {
@@ -51,6 +36,12 @@ app.get("/:id", (req, res) => {
   if (recipe.length > 1) return res.status(500).send();
   res.send(recipe[0]);
 });
+
+app.post('/', (req, res) => {
+  req.body.id = recipes.length + 1;
+  recipes.push(req.body)
+  res.status(200).send()
+})
 
 app.listen(8081, () => {
   console.log("App's running on port 8081");
