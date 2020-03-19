@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, prefetchQuery } from "react-query";
+import { useQuery, queryCache } from "react-query";
 
 import Button from "./Button";
 
@@ -10,10 +10,14 @@ export default function Recipes({ setActiveRecipe }) {
 
   return (
     <div>
-      <h2>Recipes List 
+      <h2>Recipes List <br />
       { isFetching 
-        ? " Loading" 
-        : null
+        ? "Loading" 
+        : <Button onClick={() => {
+            queryCache.refetchQueries("Recipes");
+        }}>
+        Refesh Recipes
+        </Button>
       }
         </h2>
       {data.map(Recipe => (
@@ -22,7 +26,7 @@ export default function Recipes({ setActiveRecipe }) {
           <Button
             onClick={() => {
               // Prefetch the Recipe query
-              prefetchQuery(["Recipe", { id: Recipe.id }], fetchRecipe);
+              queryCache.prefetchQuery(["Recipe", { id: Recipe.id }], fetchRecipe);
               setActiveRecipe(Recipe.id);
             }}
           >

@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery } from "react-query";
+import  { useQuery } from 'react-query';
 
 import Button from "./Button";
 import Spinner from "./Spinner";
@@ -8,7 +8,7 @@ import { fetchRecipe } from "../queries";
 
 export default function Recipe({ activeRecipe, setActiveRecipe }) {
   const { data, isFetching } = useQuery(
-    ["recipe", { id: activeRecipe }],
+    ["Recipe", { id: activeRecipe }],
     fetchRecipe
   );
 

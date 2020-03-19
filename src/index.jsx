@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import ReactDOM from "react-dom";
 import { ReactQueryConfigProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query-devtools";
 
 const Recipes = lazy(() => import("./components/Recipes"));
 const Recipe = lazy(() => import("./components/Recipe"));
@@ -16,6 +17,7 @@ function App() {
   <React.Fragment>
     <h1>Fast Recipes</h1>
     <hr />
+
     <ReactQueryConfigProvider config={queryConfig}>
         <React.Suspense fallback={<h1> Loading ...</h1>}>
           {  activeRecipe ? (
@@ -28,7 +30,8 @@ function App() {
             )}
         </React.Suspense>
     </ReactQueryConfigProvider>
-  </React.Fragment>  
+    <ReactQueryDevtools initailIsOpen={false} />
+  </React.Fragment>
   );
 }
 
