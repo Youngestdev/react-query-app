@@ -1,39 +1,45 @@
-import React, { lazy } from "react";
+import React, {lazy} from "react";
 import ReactDOM from "react-dom";
-import { ReactQueryConfigProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
+import {ReactQueryConfigProvider} from "react-query";
+import {ReactQueryDevtools} from "react-query-devtools";
 
 const Recipes = lazy(() => import("./components/Recipes"));
 const Recipe = lazy(() => import("./components/Recipe"));
 
 const queryConfig = {
-  suspense: true
+    shared: {
+        suspense: true
+    },
+    queries: {
+        refetchOnWindowFocus: true
+    }
+
 };
 
 function App() {
-  const [activeRecipe, setActiveRecipe] = React.useState(null);
+    const [activeRecipe, setActiveRecipe] = React.useState(null);
 
-  return (
-  <React.Fragment>
-    <h1>Fast Recipes</h1>
-    <hr />
+    return (
+        <React.Fragment>
+            <h1>Fast Recipes</h1>
+            <hr/>
 
-    <ReactQueryConfigProvider config={queryConfig}>
-        <React.Suspense fallback={<h1> Loading ...</h1>}>
-          {  activeRecipe ? (
-              <Recipe
-                activeRecipe={activeRecipe}
-                setActiveRecipe={setActiveRecipe}
-              />
-            ) : (
-              <Recipes setActiveRecipe={setActiveRecipe} />
-            )}
-        </React.Suspense>
-    </ReactQueryConfigProvider>
-    <ReactQueryDevtools initailIsOpen={false} />
-  </React.Fragment>
-  );
+            <ReactQueryConfigProvider config={queryConfig}>
+                <React.Suspense fallback={<h1> Loading ...</h1>}>
+                    {activeRecipe ? (
+                        <Recipe
+                            activeRecipe={activeRecipe}
+                            setActiveRecipe={setActiveRecipe}
+                        />
+                    ) : (
+                        <Recipes setActiveRecipe={setActiveRecipe}/>
+                    )}
+                </React.Suspense>
+            </ReactQueryConfigProvider>
+            <ReactQueryDevtools initailIsOpen={false}/>
+        </React.Fragment>
+    );
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement)
+ReactDOM.render(<App/>, rootElement)

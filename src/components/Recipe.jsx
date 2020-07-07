@@ -1,31 +1,30 @@
 import React from "react";
-import  { useQuery } from 'react-query';
+import {useQuery} from 'react-query';
 
 import Button from "./Button";
-import Spinner from "./Spinner";
 
-import { fetchRecipe } from "../queries";
+import {fetchRecipe} from "../queries";
 
-export default function Recipe({ activeRecipe, setActiveRecipe }) {
-  const { data, isFetching } = useQuery(
-    ["Recipe", { id: activeRecipe }],
-    fetchRecipe
-  );
+export default function Recipe({activeRecipe, setActiveRecipe}) {
+    const recipeQuery = useQuery(
+        ["Recipe", {id: activeRecipe}],
+        fetchRecipe
+    );
 
-  return (
-    <React.Fragment>
-      <Button onClick={() => setActiveRecipe(null)}>Back</Button>
-      <h2>
-        ID: {activeRecipe} {isFetching ? <Spinner /> : null}
-      </h2>
-      {data                                                                                                              ? (
-        <div>
-          <p>Title: {data.title}</p>
-          <p>Content: {data.content}</p>
-        </div>
-      ) : null}
-      <br />
-      <br />
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <Button onClick={() => setActiveRecipe(null)}>Back</Button>
+            <h2>
+                ID: {activeRecipe} {recipeQuery.isFetching ? "Loading Recipe" : null}
+            </h2>
+            {recipeQuery.data ? (
+                <div>
+                    <p>Title: {recipeQuery.data.title}</p>
+                    <p>Content: {recipeQuery.data.content}</p>
+                </div>
+            ) : null}
+            <br/>
+            <br/>
+        </React.Fragment>
+    );
 }
